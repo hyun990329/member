@@ -1,6 +1,7 @@
 package com.my.member.dto;
 
 import com.my.member.entity.UserEntity;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,21 +14,21 @@ public class UserDto {
     private String password;
     private String nickname;
 
-    // 엔티티를 받아서 Dto로 변환해 주는 함수
-    public static UserDto fromEntity(UserEntity user) {
+    // Entity -> Dto 변경
+    public static UserDto fromEntity(UserEntity entity) {
         return new UserDto(
-                user.getEmail(),
-                user.getPassword(),
-                user.getNickname()
+                entity.getEmail(),
+                entity.getPassword(),
+                entity.getNickname()
         );
     }
 
-    // DTO를 받아서 Entity에 넣는 작업
+    // Dto -> Entity 변환
     public static UserEntity toDto(UserDto dto) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setEmail(dto.getEmail());
-        userEntity.setPassword(dto.getPassword());
-        userEntity.setNickname(dto.getNickname());
-        return userEntity;
+        UserEntity entity = new UserEntity();
+        entity.setEmail(dto.getEmail());
+        entity.setPassword(dto.getPassword());
+        entity.setNickname(dto.getNickname());
+        return entity;
     }
 }
